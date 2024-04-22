@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw16bhnkyeqti"]
+
+[ext_resource type="Script" path="res://Gundam project/Code/weapon.gd" id="1_e2kfa"]
+[ext_resource type="Texture2D" uid="uid://012w8cyt8lp4" path="res://Gundam project/Sprites/spr_beam_rifle1.png" id="2_metow"]
+[ext_resource type="Script" path="res://Gundam project/Code/Sprite2D.gd" id="3_nnflp"]
+[ext_resource type="AudioStream" uid="uid://cbmafs1j08xwo" path="res://Gundam project/SFX/Gundam sound effect - Fire 2.wav" id="4_twdp4"]
+
+[node name="bazooka" type="Node2D"]
+script = ExtResource("1_e2kfa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(14, -2)
+scale = Vector2(0.568182, 0.568182)
+texture = ExtResource("2_metow")
+script = ExtResource("3_nnflp")
+
+[node name="EndOfGun" type="Marker2D" parent="."]
+position = Vector2(54, -5)
+
+[node name="Gun_direction" type="Marker2D" parent="."]
+position = Vector2(67, -5)
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_twdp4")
+volume_db = -30.0

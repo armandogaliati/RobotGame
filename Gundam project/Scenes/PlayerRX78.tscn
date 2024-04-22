@@ -1,0 +1,346 @@
+[gd_scene load_steps=37 format=3 uid="uid://215lt3cnpjjo"]
+
+[ext_resource type="Script" path="res://Gundam project/Code/Player.gd" id="1_bfc2n"]
+[ext_resource type="Texture2D" uid="uid://7x05bohq67su" path="res://Gundam project/Sprites/spr_g_dash.png" id="2_06ccp"]
+[ext_resource type="PackedScene" uid="uid://bf0gw7eg3f6f0" path="res://Gundam project/Scenes/Bullet.tscn" id="2_hy2sg"]
+[ext_resource type="PackedScene" uid="uid://dpign28wgjk5c" path="res://Gundam project/Scenes/weapon.tscn" id="3_473ly"]
+[ext_resource type="Texture2D" uid="uid://dm6fmyh7vebsi" path="res://Gundam project/Sprites/spr_g_idle.png" id="3_hr74q"]
+[ext_resource type="Script" path="res://Gundam project/Code/changeweapon.gd" id="3_uq3mo"]
+[ext_resource type="Texture2D" uid="uid://bvfcgtoqkk7ue" path="res://Gundam project/Sprites/spr_g_L1.png" id="4_yd48n"]
+[ext_resource type="Texture2D" uid="uid://drof3bogfvrn3" path="res://Gundam project/Sprites/spr_g_L2.png" id="5_obltv"]
+[ext_resource type="Texture2D" uid="uid://828m0orawood" path="res://Gundam project/Sprites/spr_g_R1.png" id="6_bqxml"]
+[ext_resource type="Script" path="res://Gundam project/Code/AnimatedSprite2D.gd" id="7_7p4wa"]
+[ext_resource type="Texture2D" uid="uid://cyr8u3rs132q1" path="res://Gundam project/Sprites/spr_g_R2.png" id="7_wnham"]
+[ext_resource type="PackedScene" uid="uid://dau658f2m6mw4" path="res://Gundam project/dash.tscn" id="11_76b4g"]
+[ext_resource type="PackedScene" uid="uid://be6omgbo75nmr" path="res://Gundam project/Scenes/headvulcan.tscn" id="11_rj4gb"]
+[ext_resource type="PackedScene" uid="uid://duntq7k7cy5sg" path="res://Gundam project/Scenes/bazooka.tscn" id="13_2v82t"]
+[ext_resource type="Texture2D" uid="uid://cpkenmdp7wrbh" path="res://Gundam project/Sprites/beam_saber.png" id="14_j2pbh"]
+[ext_resource type="Script" path="res://Gundam project/Code/beamsaber.gd" id="14_mhjvr"]
+[ext_resource type="AudioStream" uid="uid://c27p1hikqvko7" path="res://Gundam project/SFX/Gundam sound effect - Dash.mp3" id="18_qf7bo"]
+[ext_resource type="Texture2D" uid="uid://bmc5suliclos5" path="res://Gundam project/Sprites/swordslash.png" id="18_wc0u6"]
+[ext_resource type="PackedScene" uid="uid://b2m06xgv8yxwk" path="res://Gundam project/Scenes/gundamtrail.tscn" id="20_nbq3w"]
+[ext_resource type="Texture2D" uid="uid://ewxan48g3ddt" path="res://Gundam project/Sprites/madnug1.png" id="21_7vh18"]
+[ext_resource type="Texture2D" uid="uid://dp062dstfvknp" path="res://Gundam project/Sprites/star_01.png" id="21_gaarg"]
+[ext_resource type="Texture2D" uid="uid://b4otdpcu0vpr5" path="res://Gundam project/Sprites/barHorizontal_white_mid.png" id="22_g8tpy"]
+[ext_resource type="Texture2D" uid="uid://cvmxxn7f0gy1e" path="res://Gundam project/Sprites/Gund_rifcerto.png" id="23_p7pmh"]
+[ext_resource type="Texture2D" uid="uid://dtkvoi1wjamod" path="res://Gundam project/Sprites/Hyperbtamanhocerto.png" id="24_kxcsk"]
+[ext_resource type="Texture2D" uid="uid://t01ayhd8qswa" path="res://Gundam project/Sprites/glassPanel.png" id="24_mm8ep"]
+[ext_resource type="Texture2D" uid="uid://ke8jgidqg1o3" path="res://Gundam project/Sprites/Saber1.png" id="25_kk3uj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lbctn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_06ccp")
+}],
+"loop": false,
+"name": &"dashing",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hr74q")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_yd48n")
+}, {
+"duration": 50.0,
+"texture": ExtResource("5_obltv")
+}],
+"loop": false,
+"name": &"walk_left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_bqxml")
+}, {
+"duration": 50.0,
+"texture": ExtResource("7_wnham")
+}],
+"loop": false,
+"name": &"walk_right",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a46yb"]
+radius = 33.0
+height = 96.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a2xhd"]
+radius = 96.7729
+
+[sub_resource type="Animation" id="Animation_uagsx"]
+resource_name = "swing"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 2.01783, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Sprite2D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ngnab"]
+_data = {
+"swing": SubResource("Animation_uagsx")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8slyw"]
+blend_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d1h0q"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 25.4
+gravity = Vector3(0, 50, 0)
+scale_min = 0.02
+scale_max = 0.04
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oc0x0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eirif"]
+texture = ExtResource("22_g8tpy")
+modulate_color = Color(0.247059, 0.247059, 0.247059, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qmk5c"]
+texture = ExtResource("22_g8tpy")
+modulate_color = Color(0.6, 0, 0.0156863, 1)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_bfc2n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lbctn")
+animation = &"idle"
+script = ExtResource("7_7p4wa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_a46yb")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Headvulcan" parent="." instance=ExtResource("11_rj4gb")]
+position = Vector2(-4, -23)
+
+[node name="Dash" parent="." instance=ExtResource("11_76b4g")]
+
+[node name="Weapon Manager" type="Node2D" parent="."]
+position = Vector2(-16, 24)
+script = ExtResource("3_uq3mo")
+
+[node name="weapon" parent="Weapon Manager" instance=ExtResource("3_473ly")]
+position = Vector2(-9, -7)
+Bullet = ExtResource("2_hy2sg")
+
+[node name="bazooka" parent="Weapon Manager" instance=ExtResource("13_2v82t")]
+visible = false
+position = Vector2(-15, -27)
+
+[node name="beamsaber" type="Node2D" parent="Weapon Manager"]
+visible = false
+position = Vector2(-9, -11)
+script = ExtResource("14_mhjvr")
+
+[node name="Area2D" type="Area2D" parent="Weapon Manager/beamsaber"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon Manager/beamsaber/Area2D"]
+position = Vector2(27, -18)
+shape = SubResource("CircleShape2D_a2xhd")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapon Manager/beamsaber/Area2D"]
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+position = Vector2(-1.90735e-06, -1)
+scale = Vector2(0.8125, 0.8125)
+texture = ExtResource("14_j2pbh")
+offset = Vector2(-0.0159683, -51.6923)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Weapon Manager/beamsaber/Area2D/Sprite2D"]
+visible = false
+show_behind_parent = true
+position = Vector2(-44.3077, -78.7692)
+rotation = -0.00621098
+scale = Vector2(1.39149, 1.37346)
+texture = ExtResource("18_wc0u6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon Manager/beamsaber/Area2D"]
+libraries = {
+"": SubResource("AnimationLibrary_ngnab")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_qf7bo")
+volume_db = -20.0
+
+[node name="Line2D" parent="." instance=ExtResource("20_nbq3w")]
+z_index = -2
+default_color = Color(0, 0.278431, 1, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.0470588, 0.815686, 1, 0.776471)
+self_modulate = Color(1.2, 1.2, 1.2, 1)
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_8slyw")
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_d1h0q")
+texture = ExtResource("21_gaarg")
+lifetime = 0.45
+explosiveness = 0.15
+randomness = 0.6
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Rows" type="VBoxContainer" parent="GUI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -214.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Rows"]
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("21_7vh18")
+stretch_mode = 3
+
+[node name="HealthBar" type="ProgressBar" parent="GUI/Rows/TextureRect"]
+material = SubResource("CanvasItemMaterial_oc0x0")
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.556
+anchor_right = 0.5
+anchor_bottom = 0.56
+offset_left = -70.0
+offset_top = -29.984
+offset_right = 130.0
+offset_bottom = -0.840004
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.697057, 1.24)
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+auto_translate = false
+localize_numeral_system = false
+theme_override_styles/background = SubResource("StyleBoxTexture_eirif")
+theme_override_styles/fill = SubResource("StyleBoxTexture_qmk5c")
+max_value = 1000.0
+value = 1000.0
+rounded = true
+show_percentage = false
+
+[node name="gundrif" type="TextureRect" parent="GUI/Rows/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 47.0
+offset_top = 6.0
+offset_right = 265.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("23_p7pmh")
+expand_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="GUI/Rows/TextureRect/gundrif"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.309804)
+show_behind_parent = true
+position = Vector2(110, 56)
+scale = Vector2(1.05145, 0.56)
+texture = ExtResource("24_mm8ep")
+
+[node name="hyperbazooka" type="TextureRect" parent="GUI/Rows/TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 112.0
+offset_top = 38.0
+offset_right = 198.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("24_kxcsk")
+expand_mode = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="GUI/Rows/TextureRect/hyperbazooka"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.309804)
+show_behind_parent = true
+position = Vector2(45, 24)
+scale = Vector2(1.05145, 0.56)
+texture = ExtResource("24_mm8ep")
+
+[node name="saber" type="TextureRect" parent="GUI/Rows/TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 105.0
+offset_top = 44.0
+offset_right = 204.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_kk3uj")
+expand_mode = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="GUI/Rows/TextureRect/saber"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.309804)
+show_behind_parent = true
+position = Vector2(52, 18)
+scale = Vector2(1.05145, 0.56)
+texture = ExtResource("24_mm8ep")
+
+[connection signal="body_entered" from="Weapon Manager/beamsaber/Area2D" to="Weapon Manager/beamsaber" method="_on_area_2d_body_entered"]

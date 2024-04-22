@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cafglqvtjku14"]
+
+[ext_resource type="PackedScene" uid="uid://bf0gw7eg3f6f0" path="res://Gundam project/Scenes/Bullet.tscn" id="1_yokh2"]
+[ext_resource type="Script" path="res://Gundam project/Code/bullet_bazooka.gd" id="2_de5u0"]
+[ext_resource type="Texture2D" uid="uid://b6m8x7qvqf5d1" path="res://Gundam project/Sprites/spr_rocket.png" id="2_e7su4"]
+
+[node name="Bullet_bazooka" instance=ExtResource("1_yokh2")]
+script = ExtResource("2_de5u0")
+speed = 50
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_e7su4")
+
+[node name="KillTimer" parent="." index="2"]
+wait_time = 0.3
+
+[node name="Line2D" parent="." index="3"]
+visible = false

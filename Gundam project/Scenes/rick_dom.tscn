@@ -1,0 +1,160 @@
+[gd_scene load_steps=23 format=3 uid="uid://bab58jlf0jrqv"]
+
+[ext_resource type="Script" path="res://Gundam project/Code/rick_dom.gd" id="1_7fc8w"]
+[ext_resource type="Texture2D" uid="uid://muu52fmepyvr" path="res://Gundam project/Sprites/spr_rck_idle.png" id="1_q3mua"]
+[ext_resource type="Texture2D" uid="uid://ghn6xl30qvr4" path="res://Gundam project/Sprites/spr_rck_L1.png" id="2_c5iif"]
+[ext_resource type="Texture2D" uid="uid://ck5os320mxrh3" path="res://Gundam project/Sprites/spr_rck_L2.png" id="3_e0twp"]
+[ext_resource type="Texture2D" uid="uid://ki3gnxixtmak" path="res://Gundam project/Sprites/spr_rck_r1.png" id="4_om35t"]
+[ext_resource type="Texture2D" uid="uid://cbxtolyaal6so" path="res://Gundam project/Sprites/spr_rck_r2.png" id="5_qsh48"]
+[ext_resource type="Script" path="res://Gundam project/Code/FiniteStateMachine.gd" id="6_ovgxk"]
+[ext_resource type="Script" path="res://Gundam project/Code/char_weapon.gd" id="7_7v04a"]
+[ext_resource type="Texture2D" uid="uid://b4otdpcu0vpr5" path="res://Gundam project/Sprites/barHorizontal_white_mid.png" id="7_vrpts"]
+[ext_resource type="Script" path="res://Gundam project/Code/RickIdle.gd" id="8_k7fpf"]
+[ext_resource type="Script" path="res://Gundam project/Code/RickFollow.gd" id="9_upeyx"]
+[ext_resource type="Script" path="res://Gundam project/Code/RickShoot.gd" id="10_ujgjs"]
+[ext_resource type="PackedScene" uid="uid://bujdtt6b5dmgk" path="res://Gundam project/Scenes/bullet_bazooka_char.tscn" id="11_l1ujr"]
+[ext_resource type="Script" path="res://Gundam project/Code/RickDeath.gd" id="13_ic82c"]
+[ext_resource type="AudioStream" uid="uid://dw5sow6rct1p0" path="res://Gundam project/SFX/Missile launch Sound effect.wav" id="13_p3yyx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jnt6e"]
+radius = 32.0
+height = 90.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_txiuk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q3mua")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c5iif")
+}, {
+"duration": 50.0,
+"texture": ExtResource("3_e0twp")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_om35t")
+}, {
+"duration": 50.0,
+"texture": ExtResource("5_qsh48")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_krr4a"]
+radius = 667.0
+
+[sub_resource type="Animation" id="Animation_es14j"]
+resource_name = "rick_gun_shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.492183, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qc7w6"]
+_data = {
+"rick_gun_shoot": SubResource("Animation_es14j")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pgmym"]
+texture = ExtResource("7_vrpts")
+modulate_color = Color(0.282353, 0.282353, 0.282353, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v2oyu"]
+texture = ExtResource("7_vrpts")
+modulate_color = Color(0.694118, 0.0352941, 0, 1)
+
+[node name="Rick Dom" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_7fc8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -1)
+shape = SubResource("CapsuleShape2D_jnt6e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_txiuk")
+animation = &"idle"
+
+[node name="WeaponManager" type="Node2D" parent="."]
+
+[node name="bullet_spawner" type="Node2D" parent="WeaponManager"]
+script = ExtResource("7_7v04a")
+
+[node name="Gun_direction" type="Marker2D" parent="WeaponManager/bullet_spawner"]
+position = Vector2(100, 0)
+
+[node name="EndOfGun" type="Marker2D" parent="WeaponManager/bullet_spawner"]
+position = Vector2(53, 0)
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_krr4a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerDetection"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_qc7w6")
+}
+
+[node name="FiniteStateMachine" type="Node2D" parent="."]
+script = ExtResource("6_ovgxk")
+
+[node name="Idle" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("8_k7fpf")
+
+[node name="Follow" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("9_upeyx")
+
+[node name="Shoot" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("10_ujgjs")
+Bullet = ExtResource("11_l1ujr")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FiniteStateMachine/Shoot"]
+stream = ExtResource("13_p3yyx")
+volume_db = -30.0
+
+[node name="Death" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("13_ic82c")
+
+[node name="debug" type="Label" parent="."]
+visible = false
+offset_left = -10.0
+offset_top = 51.0
+offset_right = 30.0
+offset_bottom = 74.0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -33.0
+offset_top = -68.0
+offset_right = 53.0
+offset_bottom = -41.0
+scale = Vector2(0.951774, 0.37249)
+theme_override_styles/background = SubResource("StyleBoxTexture_pgmym")
+theme_override_styles/fill = SubResource("StyleBoxTexture_v2oyu")
+value = 100.0
+show_percentage = false
+
+[connection signal="body_entered" from="PlayerDetection" to="WeaponManager/bullet_spawner" method="_on_player_detection_body_entered"]
+[connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]

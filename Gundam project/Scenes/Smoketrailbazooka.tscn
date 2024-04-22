@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bckcq6xarbsb0"]
+
+[ext_resource type="Texture2D" uid="uid://dq6li03lh1gfo" path="res://Gundam project/Sprites/trail.png" id="1_0sa5t"]
+[ext_resource type="Script" path="res://Gundam project/Code/smoketrailbazooka.gd" id="2_0pcfd"]
+
+[sub_resource type="Curve" id="Curve_fjvau"]
+_data = [Vector2(0, 0), 0.0, 1.66667, 0, 1, Vector2(0.6, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_0u86y"]
+offsets = PackedFloat32Array(0.0902256, 0.766917)
+colors = PackedColorArray(1, 1, 1, 1, 0.24853, 0.24853, 0.24853, 1)
+
+[node name="Line2D" type="Line2D"]
+width = 30.0
+width_curve = SubResource("Curve_fjvau")
+default_color = Color(0.478431, 0.470588, 0.639216, 1)
+gradient = SubResource("Gradient_0u86y")
+texture = ExtResource("1_0sa5t")
+texture_mode = 2
+script = ExtResource("2_0pcfd")

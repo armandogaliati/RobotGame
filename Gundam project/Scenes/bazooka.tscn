@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://duntq7k7cy5sg"]
+
+[ext_resource type="PackedScene" uid="uid://dpign28wgjk5c" path="res://Gundam project/Scenes/weapon.tscn" id="1_6njs2"]
+[ext_resource type="PackedScene" uid="uid://cafglqvtjku14" path="res://Gundam project/Scenes/bullet_bazooka.tscn" id="2_sram1"]
+[ext_resource type="Texture2D" uid="uid://dibu2g7tow0av" path="res://Gundam project/Sprites/spr_bazooka.png" id="2_wla1l"]
+[ext_resource type="AudioStream" uid="uid://b2xn6r4j0yvk" path="res://Gundam project/SFX/som_tiro_grave.wav" id="3_0v2ch"]
+
+[node name="bazooka" instance=ExtResource("1_6njs2")]
+Bullet = ExtResource("2_sram1")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(18, -3)
+scale = Vector2(0.367424, 0.367424)
+texture = ExtResource("2_wla1l")
+
+[node name="EndOfGun" parent="." index="1"]
+position = Vector2(64, -5)
+
+[node name="Gun_direction" parent="." index="2"]
+position = Vector2(83, -5)
+
+[node name="AttackCooldown" parent="." index="3"]
+wait_time = 1.0
+
+[node name="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("3_0v2ch")

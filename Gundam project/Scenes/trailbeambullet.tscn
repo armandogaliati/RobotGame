@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://brj4onj3dd8w6"]
+
+[ext_resource type="Script" path="res://Gundam project/Code/beamtrail.gd" id="1_a1o2q"]
+
+[sub_resource type="Curve" id="Curve_bhx1b"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.346821, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Line2D" type="Line2D"]
+self_modulate = Color(1.2, 1.2, 1.2, 1)
+show_behind_parent = true
+width_curve = SubResource("Curve_bhx1b")
+default_color = Color(1, 0.572549, 0.839216, 0.776471)
+script = ExtResource("1_a1o2q")

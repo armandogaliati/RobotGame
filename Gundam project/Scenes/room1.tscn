@@ -1,0 +1,132 @@
+[gd_scene load_steps=13 format=3 uid="uid://cmqemgwnhvng8"]
+
+[ext_resource type="PackedScene" uid="uid://215lt3cnpjjo" path="res://Gundam project/Scenes/PlayerRX78.tscn" id="1_5ur6b"]
+[ext_resource type="Script" path="res://Gundam project/Code/room1.gd" id="1_ohv11"]
+[ext_resource type="PackedScene" uid="uid://fyioncoq703x" path="res://Gundam project/Scenes/Zaku.tscn" id="3_kfd2o"]
+[ext_resource type="Script" path="res://Gundam project/Code/BulletManager.gd" id="4_neuau"]
+[ext_resource type="Texture2D" uid="uid://c2p3tokjr7bq7" path="res://Gundam project/Tiles/white base.png" id="7_5les2"]
+[ext_resource type="Texture2D" uid="uid://ukhrqpu24kk" path="res://Gundam project/Tiles/Nebula Aqua-Pink.png" id="7_uq5xy"]
+[ext_resource type="Texture2D" uid="uid://ccy7gix0yy5ek" path="res://Gundam project/Tiles/Stars Small_1.png" id="8_dcujf"]
+[ext_resource type="Texture2D" uid="uid://cfr3l5l4utykt" path="res://Gundam project/Tiles/Stars Small_2.png" id="9_54ykj"]
+[ext_resource type="Texture2D" uid="uid://buh5epcfbm6yo" path="res://Gundam project/Sprites/musai.png" id="10_wnc03"]
+[ext_resource type="PackedScene" uid="uid://bab58jlf0jrqv" path="res://Gundam project/Scenes/rick_dom.tscn" id="10_wvqy0"]
+[ext_resource type="PackedScene" uid="uid://bldc3t44l4koc" path="res://Gundam project/Scenes/char_zaku.tscn" id="11_cy7dw"]
+
+[sub_resource type="Environment" id="Environment_430uf"]
+background_mode = 3
+background_color = Color(0.980392, 0.980392, 0.980392, 1)
+reflected_light_source = 1
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_intensity = 1.0
+glow_blend_mode = 0
+glow_hdr_scale = 0.88
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ohv11")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_430uf")
+
+[node name="BulletManager" type="Node2D" parent="."]
+script = ExtResource("4_neuau")
+
+[node name="WhiteBase" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(-885, 972)
+texture = ExtResource("7_5les2")
+
+[node name="player" parent="." groups=["player"] instance=ExtResource("1_5ur6b")]
+position = Vector2(545, 1035)
+motion_mode = 1
+
+[node name="Zakunode" parent="." instance=ExtResource("3_kfd2o")]
+position = Vector2(1548, 1083)
+
+[node name="Zakunode2" parent="." instance=ExtResource("3_kfd2o")]
+position = Vector2(1537, 1617)
+
+[node name="Rick Dom" parent="." instance=ExtResource("10_wvqy0")]
+position = Vector2(1552, 478)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="BackgroundStars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_offset = Vector2(2048, 2048)
+motion_mirroring = Vector2(4096, 4096)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/BackgroundStars"]
+texture = ExtResource("8_dcujf")
+centered = false
+
+[node name="Nebula" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(1, 1, 1, 0.85098)
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(4096, 4096)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Nebula"]
+position = Vector2(4, -1)
+texture = ExtResource("7_uq5xy")
+centered = false
+
+[node name="ForegroundStars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(4096, 4096)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ForegroundStars"]
+self_modulate = Color(1.2, 1.2, 1.2, 1)
+texture = ExtResource("9_54ykj")
+centered = false
+
+[node name="Musai" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(96, -25)
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Musai"]
+position = Vector2(2706, 848)
+scale = Vector2(0.217213, 0.217213)
+texture = ExtResource("10_wnc03")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Musai"]
+position = Vector2(2842, 851)
+scale = Vector2(0.217213, 0.217213)
+texture = ExtResource("10_wnc03")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Musai"]
+position = Vector2(2739, 912)
+scale = Vector2(0.217213, 0.217213)
+texture = ExtResource("10_wnc03")
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/Musai"]
+position = Vector2(2857, 928)
+scale = Vector2(0.217213, 0.217213)
+texture = ExtResource("10_wnc03")
+
+[node name="Sprite2D5" type="Sprite2D" parent="ParallaxBackground/Musai"]
+position = Vector2(2805, 797)
+scale = Vector2(0.217213, 0.217213)
+texture = ExtResource("10_wnc03")
+
+[node name="Sprite2D6" type="Sprite2D" parent="ParallaxBackground/Musai"]
+position = Vector2(2757, 975)
+scale = Vector2(0.217213, 0.217213)
+texture = ExtResource("10_wnc03")
+
+[node name="Sprite2D7" type="Sprite2D" parent="ParallaxBackground/Musai"]
+position = Vector2(2605, 964)
+scale = Vector2(0.217213, 0.217213)
+texture = ExtResource("10_wnc03")
+
+[node name="Sprite2D8" type="Sprite2D" parent="ParallaxBackground/Musai"]
+position = Vector2(2625, 900)
+scale = Vector2(0.217213, 0.217213)
+texture = ExtResource("10_wnc03")
+
+[node name="Sprite2D9" type="Sprite2D" parent="ParallaxBackground/Musai"]
+position = Vector2(2657, 1010)
+scale = Vector2(0.217213, 0.217213)
+texture = ExtResource("10_wnc03")
+
+[node name="Char_Zaku" parent="." instance=ExtResource("11_cy7dw")]
+position = Vector2(3794, 1001)

@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfb16socicijj"]
+
+[ext_resource type="Script" path="res://Gundam project/Code/FiniteStateMachine.gd" id="1_acf8n"]
+
+[node name="Enemy" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[node name="WeaponManager" type="Node2D" parent="Area2D"]
+
+[node name="bullet_spawner" type="Node2D" parent="Area2D/WeaponManager"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D"]
+root_node = NodePath("../..")
+
+[node name="FiniteStateMachine" type="Node2D" parent="."]
+script = ExtResource("1_acf8n")
+
+[node name="Idle" type="Node2D" parent="FiniteStateMachine"]
+
+[node name="Follow" type="Node2D" parent="FiniteStateMachine"]
+
+[node name="Shoot" type="Node2D" parent="FiniteStateMachine"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FiniteStateMachine/Shoot"]
+
+[node name="Death" type="Node2D" parent="FiniteStateMachine"]

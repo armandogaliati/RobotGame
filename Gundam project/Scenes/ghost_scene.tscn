@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnn2jwwtj32es"]
+
+[ext_resource type="Script" path="res://Gundam project/Code/interp.gd" id="1_ejqts"]
+
+[sub_resource type="Gradient" id="Gradient_a7q66"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rhkpr"]
+gradient = SubResource("Gradient_a7q66")
+
+[node name="DashGhost" type="Sprite2D"]
+z_index = -1
+texture = SubResource("GradientTexture1D_rhkpr")
+script = ExtResource("1_ejqts")
