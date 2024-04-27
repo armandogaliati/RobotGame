@@ -6,10 +6,6 @@ signal weapon_fired(bullet, location, direction)
 @onready var end_of_gun = $EndOfGun
 @onready var gun_direction = $Gun_direction
 @onready var enemy = null
-@onready var attack_cooldown=$vulcan_timer
-@onready var shot_timer=$vulcan_shot_timer
-var burst_amount_initial=15
-var burst_amount=burst_amount_initial
 
 func _physics_process(delta):
 	if enemy !=null:
