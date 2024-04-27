@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name RickDom
 
+
 @onready var player = get_parent().find_child("player")
 @onready var anim = $AnimatedSprite2D
 @onready var progress_bar=$ProgressBar
@@ -13,6 +14,7 @@ var health = 100:
 		progress_bar.value = value
 		if value <= 0:
 			progress_bar.visible = false
+			GlobalSignals.emit_signal("enemydied")
 			queue_free()
 			#find_child("FiniteStateMachine").change_state("Death")
 
@@ -45,3 +47,4 @@ func handle_hitbazooka():
 
 func handle_hitmelee():
 	health -=100
+

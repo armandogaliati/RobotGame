@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmqemgwnhvng8"]
+[gd_scene load_steps=14 format=3 uid="uid://cmqemgwnhvng8"]
 
 [ext_resource type="PackedScene" uid="uid://215lt3cnpjjo" path="res://Gundam project/Scenes/PlayerRX78.tscn" id="1_5ur6b"]
 [ext_resource type="Script" path="res://Gundam project/Code/room1.gd" id="1_ohv11"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ukhrqpu24kk" path="res://Gundam project/Tiles/Nebula Aqua-Pink.png" id="7_uq5xy"]
 [ext_resource type="Texture2D" uid="uid://ccy7gix0yy5ek" path="res://Gundam project/Tiles/Stars Small_1.png" id="8_dcujf"]
 [ext_resource type="Texture2D" uid="uid://cfr3l5l4utykt" path="res://Gundam project/Tiles/Stars Small_2.png" id="9_54ykj"]
+[ext_resource type="Script" path="res://Gundam project/Code/Label.gd" id="10_dwswy"]
 [ext_resource type="Texture2D" uid="uid://buh5epcfbm6yo" path="res://Gundam project/Sprites/musai.png" id="10_wnc03"]
 [ext_resource type="PackedScene" uid="uid://bab58jlf0jrqv" path="res://Gundam project/Scenes/rick_dom.tscn" id="10_wvqy0"]
 [ext_resource type="PackedScene" uid="uid://bldc3t44l4koc" path="res://Gundam project/Scenes/char_zaku.tscn" id="11_cy7dw"]
@@ -40,14 +41,21 @@ texture = ExtResource("7_5les2")
 position = Vector2(545, 1035)
 motion_mode = 1
 
-[node name="Zakunode" parent="." instance=ExtResource("3_kfd2o")]
-position = Vector2(1548, 1083)
+[node name="Control" type="Control" parent="player"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -472.0
+offset_top = -210.0
+offset_right = -317.0
+offset_bottom = -170.0
+size_flags_horizontal = 4
 
-[node name="Zakunode2" parent="." instance=ExtResource("3_kfd2o")]
-position = Vector2(1537, 1617)
-
-[node name="Rick Dom" parent="." instance=ExtResource("10_wvqy0")]
-position = Vector2(1552, 478)
+[node name="Label" type="Label" parent="player/Control"]
+layout_mode = 0
+offset_right = 61.0
+offset_bottom = 23.0
+text = "Score: 0"
+script = ExtResource("10_dwswy")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -130,3 +138,12 @@ texture = ExtResource("10_wnc03")
 
 [node name="Char_Zaku" parent="." instance=ExtResource("11_cy7dw")]
 position = Vector2(3794, 1001)
+
+[node name="Zakunode" parent="." instance=ExtResource("3_kfd2o")]
+position = Vector2(1548, 1083)
+
+[node name="Zakunode2" parent="." instance=ExtResource("3_kfd2o")]
+position = Vector2(1537, 1617)
+
+[node name="Rick Dom" parent="." instance=ExtResource("10_wvqy0")]
+position = Vector2(1552, 478)

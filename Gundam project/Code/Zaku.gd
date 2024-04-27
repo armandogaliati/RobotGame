@@ -11,6 +11,7 @@ var health = 100:
 		health = value
 		progress_bar.value = value
 		if value <= 0:
+			GlobalSignals.emit_signal("enemydied")
 			progress_bar.visible = false
 			queue_free()
 			#find_child("FiniteStateMachine").change_state("Death")
