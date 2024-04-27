@@ -25,7 +25,7 @@ position = Vector2(258, 0)
 position = Vector2(87, 0)
 
 [node name="vulcan_timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 4.0
 one_shot = true
 
 [node name="vulcan_shot_timer" type="Timer" parent="."]

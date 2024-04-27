@@ -37,7 +37,7 @@ func handle_hitbeam():
 	health -=35
 
 func handle_hitvulcan():
-	health -=10
+	health -=5
 
 
 func handle_hitbazooka():

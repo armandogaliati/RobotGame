@@ -26,21 +26,11 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	enemy and body==enemy
 	enemy=null
-#
+
 func vulcan_shoot():
-	if attack_cooldown.is_stopped():
-		if shot_timer.is_stopped():
+		$AudioStreamPlayer.play()
+		for x in 10:
 			var bullet_instance = Bullet.instantiate()
 			var direction= (gun_direction.global_position - end_of_gun.global_position).normalized()
 			GlobalSignals.emit_signal("bullet_fired",bullet_instance,end_of_gun.global_position,direction)
-			if burst_amount==burst_amount_initial:
-				$AudioStreamPlayer.play()
-			burst_amount-=1
-			shot_timer.start(0.1)
-			print (burst_amount)
-			if burst_amount > 0:
-				pass
-			else:
-				attack_cooldown.start()
-				burst_amount=burst_amount_initial
-
+			await get_tree().create_timer(0.1).timeout

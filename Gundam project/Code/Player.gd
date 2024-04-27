@@ -15,6 +15,7 @@ const dash_duration= 0.2
 @onready var vulcan = $"Headvulcan"
 @onready var dash = $Dash
 @onready var progress_bar= $GUI/Rows/TextureRect/HealthBar
+@onready var vulcan_cooldown=$Headvulcan/vulcan_timer
 
 var player_dead = false
 
@@ -28,8 +29,9 @@ var health = 1000:
 
 
 func _process(delta):
-	if Input.is_action_pressed("vulcan_shoot"):
+	if Input.is_action_just_pressed("vulcan_shoot") and vulcan_cooldown.is_stopped():
 		vulcan.vulcan_shoot()
+		vulcan_cooldown.start()
 
 
 func _physics_process(delta):
