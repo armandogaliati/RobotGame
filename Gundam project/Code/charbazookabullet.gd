@@ -27,3 +27,6 @@ func _on_body_entered(body):
 	if body.has_method("handle_hitbazookachar"):
 		body.handle_hitbazookachar()
 		queue_free()
+		
+func handle_hitvulcan():
+	queue_free()

@@ -8,7 +8,7 @@
 radius = 12.0
 height = 80.0
 
-[node name="BulletBazookaChar" type="Area2D"]
+[node name="BulletBazookaChar" type="Area2D" groups=["Rocket"]]
 script = ExtResource("1_kn4dc")
 
 [node name="Line2D" parent="." instance=ExtResource("3_d4biw")]

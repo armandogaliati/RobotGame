@@ -27,3 +27,10 @@ func _on_body_entered(body):
 	if body.has_method("handle_hitvulcan"):
 		body.handle_hitvulcan()
 		queue_free()
+
+
+
+func _on_area_entered(area):
+	if area.has_method("handle_hitvulcan"):
+		area.handle_hitvulcan()
+		queue_free()

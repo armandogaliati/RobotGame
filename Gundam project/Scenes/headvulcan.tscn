@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://ca6np10p3a5n2" path="res://Gundam project/SFX/vulcan.wav" id="4_0ry72"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rnkvp"]
-radius = 264.008
+radius = 392.51
 
 [node name="headvulcan" type="Node2D"]
 position = Vector2(-21, 19)
@@ -31,7 +31,7 @@ one_shot = true
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
+position = Vector2(-1, 1)
 shape = SubResource("CircleShape2D_rnkvp")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -39,5 +39,5 @@ stream = ExtResource("4_0ry72")
 volume_db = -30.0
 
 [connection signal="timeout" from="vulcan_timer" to="." method="_on_main_timer_timeout"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
