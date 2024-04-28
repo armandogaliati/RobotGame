@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmqemgwnhvng8"]
+[gd_scene load_steps=13 format=3 uid="uid://cmqemgwnhvng8"]
 
 [ext_resource type="PackedScene" uid="uid://215lt3cnpjjo" path="res://Gundam project/Scenes/PlayerRX78.tscn" id="1_5ur6b"]
 [ext_resource type="Script" path="res://Gundam project/Code/room1.gd" id="1_ohv11"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://Gundam project/Code/Label.gd" id="10_dwswy"]
 [ext_resource type="Texture2D" uid="uid://buh5epcfbm6yo" path="res://Gundam project/Sprites/musai.png" id="10_wnc03"]
 [ext_resource type="PackedScene" uid="uid://bab58jlf0jrqv" path="res://Gundam project/Scenes/rick_dom.tscn" id="10_wvqy0"]
-[ext_resource type="PackedScene" uid="uid://bldc3t44l4koc" path="res://Gundam project/Scenes/char_zaku.tscn" id="11_cy7dw"]
 
 [sub_resource type="Environment" id="Environment_430uf"]
 background_mode = 3
@@ -135,9 +134,6 @@ texture = ExtResource("10_wnc03")
 position = Vector2(2657, 1010)
 scale = Vector2(0.217213, 0.217213)
 texture = ExtResource("10_wnc03")
-
-[node name="Char_Zaku" parent="." instance=ExtResource("11_cy7dw")]
-position = Vector2(3794, 1001)
 
 [node name="Zakunode" parent="." instance=ExtResource("3_kfd2o")]
 position = Vector2(1548, 1083)

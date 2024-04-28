@@ -304,7 +304,7 @@ scale_max = 0.04
 [sub_resource type="CircleShape2D" id="CircleShape2D_gg4sb"]
 radius = 1805.9
 
-[node name="Char_Zaku" type="CharacterBody2D" groups=["enemy"]]
+[node name="Char_Zaku" type="CharacterBody2D" groups=["Boss"]]
 script = ExtResource("1_pued7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

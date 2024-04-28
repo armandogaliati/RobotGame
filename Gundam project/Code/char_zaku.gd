@@ -1,5 +1,4 @@
 extends CharacterBody2D
-class_name Char
 
 @onready var player = get_parent().find_child("player")
 @onready var anim = $AnimatedSprite2D
